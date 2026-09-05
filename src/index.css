@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Archivo", "IBM Plex Sans", system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-paper: #f2f4f9;
+  --color-card: #fcfdff;
+  --color-line: #dde4f0;
+  --color-ink: #0e1b33;
+  --color-soft: #56688f;
+
+  --color-navy-950: #071737;
+  --color-navy-900: #0a1f44;
+  --color-navy-800: #0c2560;
+
+  --color-royal-50: #eef3fd;
+  --color-royal-100: #dbe7fb;
+  --color-royal-200: #b9cdf5;
+  --color-royal-500: #2055c4;
+  --color-royal-600: #1a48ac;
+  --color-royal-700: #153b8e;
+  --color-royal-800: #102f71;
+  --color-royal-900: #0c2560;
+
+  --color-gold-100: #fdf1d2;
+  --color-gold-400: #f0b429;
+  --color-gold-500: #e0a113;
+  --color-gold-700: #9c6f06;
+
+  --color-flame-100: #fbe3df;
+  --color-flame-600: #c33d2e;
+  --color-flame-700: #a32f23;
+
+  --color-forest-100: #d9efe3;
+  --color-forest-600: #157a4e;
+  --color-forest-700: #0f6140;
+
+  --color-tealx-100: #d7eef0;
+  --color-tealx-700: #0e6e78;
+
+  --color-copper-100: #f4e3d7;
+  --color-copper-700: #a05a24;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-gold-400);
+  color: var(--color-navy-900);
+}
+
+/* ---------- signature backgrounds ---------- */
+.bg-dotted {
+  background-image: radial-gradient(rgba(32, 85, 196, 0.16) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.bg-dotted-light {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.bg-globe-hero {
+  background:
+    radial-gradient(1100px 500px at 85% -10%, rgba(32, 85, 196, 0.14), transparent 60%),
+    radial-gradient(700px 400px at -10% 30%, rgba(240, 180, 41, 0.1), transparent 55%),
+    var(--color-paper);
+}
+
+.flag-bar {
+  background: linear-gradient(
+    90deg,
+    #3fa9f5 0 25%,
+    var(--color-gold-400) 25% 50%,
+    #c33d2e 50% 75%,
+    #157a4e 75% 100%
+  );
+}
+
+/* ---------- motion ---------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.reveal {
+  opacity: 0;
+}
+.reveal.is-in {
+  animation: rise 0.65s cubic-bezier(0.22, 0.9, 0.3, 1) forwards;
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0) rotate(1.5deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1.5deg);
+  }
+}
+.animate-floaty {
+  animation: floaty 6s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: -400px 0;
+  }
+  to {
+    background-position: 400px 0;
+  }
+}
+.skeleton {
+  background: linear-gradient(90deg, #e6eaf4 25%, #f2f5fb 50%, #e6eaf4 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite linear;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(21, 122, 78, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(21, 122, 78, 0);
+  }
+}
+.pulse-dot {
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.toast-in {
+  animation: toast-in 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.2) forwards;
+}
+
+/* focus visibility */
+:focus-visible {
+  outline: 2px solid var(--color-royal-600);
+  outline-offset: 2px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
